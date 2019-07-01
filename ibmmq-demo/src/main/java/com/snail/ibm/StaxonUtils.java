@@ -87,7 +87,7 @@ public class StaxonUtils {
 			}
 		}
 		if (output.toString().length() >= 38) {// remove <?xml version="1.0" encoding="UTF-8"?>
-			return "<?xml version=\"1.0\" encoding=\"GBK\"?> \n" + "<Package> \n" + output.toString().substring(39)
+			return "<?xml version=\"1.0\" encoding=\"GBK\"?>\n" + "<Package> \n" + output.toString().substring(39)
 					+ "</Package>";
 		}
 		return output.toString();
@@ -165,6 +165,7 @@ public class StaxonUtils {
 		data1.setDSGS("510100");
 		data1.setQXGS("510101");
 
+//		 其他值。。。
 		data1.setSQLX("");
 		datas.add(data1);
 

@@ -142,100 +142,23 @@ public class Mq {
 	}
 
 	public static void main(String[] args) throws MQException {
-		connect();
-//		initHb2SwXml();
-		 sendybMsg(initHb2SwXml()); // DZ_QRHB2SW
-		// receiveMsg();/
+//		connect();
+		initHb2SwXml();
+//		sendybMsg(initHb2SwXml()); // DZ_QRHB2SW
+//		receiveMsg();
 
 	}
 
 	private static String initHb2SwXml() {
-		Hb2SwModel hb2SwModel = initHb2swData();
+//		1.  数据库读取数据 如： 排污许可证推送数据
+		List<Data> datas = PwxkData.init();
+//		2. 对数据进行MQ结构化处理
+		Hb2SwModel hb2SwModel = Hb2SwModel.init(datas);
 		Object json = JSON.toJSON(hb2SwModel);
+//		3.转MQ 报文结构
 		String json2xml = StaxonUtils.json2xml(json.toString());
-		
-//		xmlStr2 = xmlStr2.toUpperCase();
-		System.out.println(xmlStr2);
-		return xmlStr2;
+		System.out.println("转换后数据：-----\n" + json2xml);
+		return json2xml;
 	}
-	static String xmlStr2 = "<?xml version=\"1.0\" encoding=\"GBK\"?>\r\n" + 
-			"<Package>\r\n" + 
-			"	<PackageHead>\r\n" + 
-			"		<SJBBH>1</SJBBH>\r\n" + 
-			"		<SJBLX>PWXKZB</SJBLX>\r\n" + 
-			"		<DWDM>1</DWDM>\r\n" + 
-			"		<DWMC>成都市友伦食品有限公司</DWMC>\r\n" + 
-			"		<JLS>1</JLS>\r\n" + 
-			"		<SCRQ>20190101</SCRQ>\r\n" + 
-			"	</PackageHead>\r\n" + 
-			"	<Data>\r\n" + 
-			"		<Record>\r\n" + 
-			"			<UUID>1</UUID>\r\n" + 
-			"			<PWXKZBH>91510124684591103D001P</PWXKZBH>	\r\n" + 
-			"			<DWMC>单位名称</DWMC>\r\n" + 
-			"			<TYSHXYDM>统一社会信用代码</TYSHXYDM>\r\n" + 
-			"			<ZZJGDM>组织机构代码</ZZJGDM>\r\n" + 
-			"			<YYZZHM>营业执照号码</YYZZHM>\r\n" + 
-			"			<HYLB>1</HYLB>\r\n" + 
-			"			<SCJYCSDZ>生产经营场所地址</SCJYCSDZ>\r\n" + 
-			"			<SZSFQHDM>510000</SZSFQHDM>\r\n" + 
-			"			<SZDSQHDM>510100</SZDSQHDM>\r\n" + 
-			"			<SZQXQHDM>510101</SZQXQHDM>\r\n" + 
-			"			<JDXZDM>510101</JDXZDM>\r\n" + 
-			"			<JSFZR>1</JSFZR>\r\n" + 
-			"			<GDDH> </GDDH>\r\n" + 
-			"			<YDDH> </YDDH>\r\n" + 
-			"			<XKYXQXQ>20190701</XKYXQXQ>\r\n" + 
-			"			<XKYXQXZ>20190701</XKYXQXZ>\r\n" + 
-			"			<TCRQ>20190701</TCRQ>\r\n" + 
-			"			<SFSYZDQY>1</SFSYZDQY>\r\n" + 
-			"			<ZYWRWLB>1</ZYWRWLB>\r\n" + 
-			"			<HFRQ>20190701</HFRQ>\r\n" + 
-			"			<HFHBJGDM>1</HFHBJGDM>\r\n" + 
-			"			<HFHBJGMC>1</HFHBJGMC>\r\n" + 
-			"			<SJGS>510000</SJGS>\r\n" + 
-			"			<DSGS>510100</DSGS>\r\n" + 
-			"			<QXGS>510101</QXGS>\r\n" + 
-			"			<SQLX>1</SQLX>\r\n" + 
-			"		    <BJSJ>20190701</BJSJ>\r\n" + 
-			"		</Record>\r\n" + 
-			"	</Data>\r\n" + 
-			"</Package>	";
 
-	private static Hb2SwModel initHb2swData() {
-		Hb2SwModel hb2SwModel = new Hb2SwModel();
-
-		PackageHead packageHead = new PackageHead();
-		packageHead.setDWDM("单位名称");
-		packageHead.setDWMC("单位代码");
-		packageHead.setSCRQ("20190701");
-		packageHead.setSJBLX("PWXKZB");
-		packageHead.setSJBBH("SJBBH");
-		packageHead.setJLS("1");
-		hb2SwModel.setPackageHead(packageHead);
-
-		List<Data> datas = new ArrayList<>();
-
-		PwxkData data1 = new PwxkData();
-		data1.setDWMC("成都市友伦食品有限公司");
-		data1.setTYSHXYDM("91510124684591103D");
-		data1.setZZJGDM("/");
-		data1.setPWXKZBH("91510124684591103D001P");
-		data1.setZYWRWLB("总氮（以N计）,总磷（以P计）");
-		data1.setSJGS("510000");
-		data1.setDSGS("510100");
-		data1.setQXGS("510101");
-
-		data1.setSQLX("");
-		datas.add(data1);
-
-		PwxkData data2 = new PwxkData();
-		data2.setBJSJ("22");
-		datas.add(data2);
-
-		DataRoot dataRoot = new DataRoot();
-		dataRoot.setRecord(datas);
-		hb2SwModel.setData(dataRoot);
-		return hb2SwModel;
-	}
 }

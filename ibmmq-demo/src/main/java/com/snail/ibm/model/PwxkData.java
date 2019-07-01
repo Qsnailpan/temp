@@ -1,5 +1,8 @@
 package com.snail.ibm.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -128,5 +131,31 @@ public class PwxkData extends Data {
 	 * 办结时间
 	 */
 	private String BJSJ;
+
+	/**
+	 * 初始数据，测试
+	 * 
+	 * @return
+	 */
+	public static List<Data> init() {
+		List<Data> datas = new ArrayList<>();
+		PwxkData data1 = new PwxkData();
+		data1.setDWMC("成都市友伦食品有限公司");
+		data1.setTYSHXYDM("91510124684591103D");
+		data1.setZZJGDM("/");
+		data1.setPWXKZBH("91510124684591103D001P");
+		data1.setZYWRWLB("总氮（以N计）,总磷（以P计）");
+		data1.setSJGS("510000");
+		data1.setDSGS("510100");
+		data1.setQXGS("510101");
+
+		data1.setSQLX("");
+		datas.add(data1);
+
+		PwxkData data2 = new PwxkData();
+		data2.setBJSJ("22");
+		datas.add(data2);
+		return datas;
+	}
 
 }

@@ -14,6 +14,7 @@ public class PwxkMq {
 	
 	StringBuffer sb = new StringBuffer(Integer.MAX_VALUE);
 	
+	static String MQ_SJBLX = "PWXKZB";
 
 	public PwxkMq(List<Data> datas) {
 		Data data = datas.get(0);
@@ -21,7 +22,7 @@ public class PwxkMq {
 		"<Package>\r\n" + 
 		"	<PackageHead>\r\n" + 
 		"		<SJBBH>1</SJBBH>\r\n" + 
-		"		<SJBLX>PWXKZB</SJBLX>\r\n" + 
+		"		<SJBLX>"+MQ_SJBLX+"</SJBLX>\r\n" + 
 		"		<DWDM>"+((PwxkData)(data)).getTYSHXYDM()+"</DWDM>\r\n" + 
 		"		<DWMC>"+((PwxkData)(data)).getDWMC()+"</DWMC>\r\n" + 
 		"		<JLS>"+datas.size()+"</JLS>\r\n" + 
