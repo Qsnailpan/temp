@@ -14,6 +14,6 @@ import lombok.Setter;
 @Setter
 public class DataRoot {
 
-	private List<Data> record; 
+	private List<Data> record;
 
 }

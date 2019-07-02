@@ -140,22 +140,39 @@ public class PwxkData extends Data {
 	public static List<Data> init() {
 		List<Data> datas = new ArrayList<>();
 		PwxkData data1 = new PwxkData();
+
+		data1.setUUID("2019-07-02-11:11:11:300");
+		data1.setPWXKZBH("91510124684591103D001P");
 		data1.setDWMC("成都市友伦食品有限公司");
 		data1.setTYSHXYDM("91510124684591103D");
 		data1.setZZJGDM("/");
-		data1.setPWXKZBH("91510124684591103D001P");
-		data1.setZYWRWLB("总氮（以N计）,总磷（以P计）");
+		data1.setYYZZHM("9151");
+		data1.setHYLB("C3813");
+		data1.setSCJYCSDZ("生产经营场所地址");
+		data1.setSZSFQHDM("510000");
+		data1.setSZDSQHDM("510100");
+		data1.setSZQXQHDM("510101");
+		data1.setJDXZDM("0101");
+		data1.setJSFZR("技术负责人");
+		data1.setGDDH("135121212122");
+		data1.setYDDH("135121212122");
+		data1.setXKYXQXQ("20190701");
+		data1.setXKYXQXZ("20190701");
+		data1.setTCRQ("20190701");
+		data1.setSFSYZDQY("1");
+		data1.setZYWRWLB("ZYWRWLB");
 		data1.setSJGS("510000");
 		data1.setDSGS("510100");
 		data1.setQXGS("510101");
-
-		data1.setSQLX("");
+		data1.setHFRQ("20190701");
+		data1.setHFHBJGDM("1");
+		data1.setHFHBJGMC("核发环保机关名称");
+		data1.setSQLX("1");
+		data1.setBJSJ("20190701");
 		datas.add(data1);
-
 		PwxkData data2 = new PwxkData();
-		data2.setBJSJ("22");
+		data2.setDWMC("单位名称2");
 		datas.add(data2);
 		return datas;
 	}
-
 }
